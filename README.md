@@ -17,7 +17,7 @@ Github: [https://github.com/describo/data-packs](https://github.com/describo/dat
 
 ## Install the package
 
-```
+```bash
 npm install --save @describo/data-packs
 ```
 
@@ -25,20 +25,33 @@ npm install --save @describo/data-packs
 
 For development you can start a local elastic search service with:
 
-```
+```bash
 docker compose up -d ; docker compose logs -f ; docker compose stop ; docker compose rm -f
 ```
 
 Then in your application you can trigger a load of all of the data packs:
 
-```
+```js
 const { IndexDataPacks } = require('@describo/data-packs')
-const index = new IndexDataPacks({ elasticUrl: "http://localhost:9200" });
+const index = new IndexDataPacks({ elasticUrl: "http://localhost:9200", indexName: "common" });
 await index.load();
 ```
 
 Or to do it once somewhere outside of your app with something like the script
 `./bin/index-data-packs.js`
+
+And **if** you are using an external elastic server use the following example:
+```js
+const { IndexDataPacks } = require('@describo/data-packs')
+const index = new IndexDataPacks({
+    elasticPath: "data",
+    elasticUrl: "https://lookups.ldaca.edu.au/",  
+    elasticAuth: { apiKey: 'base64EncodedKey' }, 
+    log: true,
+    indexName: "common"
+});
+await index.load();
+```
 
 ## Working with the package
 
@@ -46,7 +59,6 @@ Or to do it once somewhere outside of your app with something like the script
 const { DataPack } = require('@describo/data-packs')
 let datapack = new DataPack({ dataPacks: ['Austlang', 'Glottolog'], indexFields: ['@id', 'name']})
 await datapack.load()
-
 
 let language = datapack.get({
   field: "name",
