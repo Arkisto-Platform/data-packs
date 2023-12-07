@@ -1,7 +1,7 @@
 {
-    "name": "@describo/data-packs",
+    "name": "@ldac/data-packs",
     "version": "0.10.0",
-    "description": "A set of data packs for describo to load content from.",
+    "description": "A set of data packs for ro-crate to load content from.",
     "main": "index.js",
     "scripts": {
         "develop": "npm run test:watch",
@@ -11,13 +11,34 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/describo/data-packs.git"
+        "url": "git+https://github.com/Language-Research-Technology/data-packs.git"
     },
-    "homepage": "https://github.com/describo/data-packs.git",
+    "homepage": "https://github.com/Language-Research-Technology/data-packs.git",
     "author": "Marco La Rosa",
+    "funding": {
+        "type": "organization",
+        "url": "https://www.ldaca.edu.au"
+    },
+    "contributors": [
+        {
+            "name": "Peter Sefton",
+            "url": "https://ptsefton.com"
+        },
+        {
+            "name": "Moises Sacal",
+            "url": "https://orcid.org/0000-0002-4438-2755"
+        },
+        {
+            "name": "Alvin Sebastian",
+            "url": "https://orcid.org/0000-0002-9086-1722"
+        },
+        {
+            "name": "Mark Raadgever"
+        }
+    ],
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/describo/data-packs.git/issues"
+        "url": "https://github.com/Language-Research-Technology/data-packs.git/issues"
     },
     "devDependencies": {
         "clean-jsdoc-theme": "^4.1.7",
