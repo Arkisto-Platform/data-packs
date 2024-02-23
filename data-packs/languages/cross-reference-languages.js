@@ -16,7 +16,7 @@ async function main() {
         "./Glottolog-language-data/glottolog-language-data-pack.json"
     );
     const ethnologueInput = await readJson(
-        "./iso-639-3-language-data/iso-639-3-language-data-pack.json"
+        "./ISO-639-3-language-data/iso-639-3-language-data-pack.json"
     );
 
     const austlangGroupedByName = groupBy(austlangInput, "name");
