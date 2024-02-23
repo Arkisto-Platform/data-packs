@@ -1,6 +1,6 @@
 {
     "name": "@ldac/data-packs",
-    "version": "0.10.0",
+    "version": "0.11.0",
     "description": "A set of data packs for ro-crate to load content from.",
     "main": "index.js",
     "scripts": {
@@ -33,7 +33,8 @@
             "url": "https://orcid.org/0000-0002-9086-1722"
         },
         {
-            "name": "Mark Raadgever"
+            "name": "Mark Raadgever",
+            "url":"https://orcid.org/0009-0006-4202-3624"
         }
     ],
     "license": "ISC",
