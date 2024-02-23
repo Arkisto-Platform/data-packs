@@ -1,4 +1,4 @@
-const countryCodesTab = "https://www.ethnologue.com/sites/default/files/CountryCodes.tab";
+const countryCodesTab = "https://www.ethnologue.com/codes/CountryCodes.tab";
 const countryGeoJSON = "https://datahub.io/core/geo-countries/r/countries.geojson";
 const languagePack = "./iso-639-6-country-data-pack.json";
 const countryISOMapping = require("./mapping-iso3-iso2.json"); // from https://github.com/vtex/country-iso-3-to-2
@@ -34,6 +34,32 @@ async function main() {
 
     let countryGeoJSONData = await get({ url: countryGeoJSON, as: "json" });
     countryGeoJSONGroupedByName = groupBy(countryGeoJSONData.features, (c) => c.properties.ISO_A3);
+    let geoJSONasWKT = {};
+    Object.keys(countryGeoJSONGroupedByName).forEach((key) => {
+        let countryCoordinates = [...countryGeoJSONGroupedByName[key][0].geometry.coordinates];
+        let coordinateType = countryGeoJSONGroupedByName[key][0].geometry.type;
+        if (coordinateType === "Polygon") {
+            for (let p in countryCoordinates[0]) {
+                countryCoordinates[0][p] = countryCoordinates[0][p].join(" ");
+            }
+            geoJSONasWKT[key] = `POLYGON((${countryCoordinates[0].join(",")}))`;
+        } else if (coordinateType === "MultiPolygon") {
+            geoJSONasWKT[key] = `MULTIPOLYGON(`;
+            for (let g in countryCoordinates) {
+                geoJSONasWKT[key] += `(`;
+                console.log(countryCoordinates[g][0])
+                for (let p in countryCoordinates[g][0]) {
+                    console.log(countryCoordinates[g][0][p])
+                    countryCoordinates[g][0][p] = countryCoordinates[g][0][p].join(" ");
+                }
+                geoJSONasWKT[key] += `${countryCoordinates[g][0].join(",")})`;
+            }
+            geoJSONasWKT[key] += `)`;
+        } else {
+            console.log(coordinateType);
+            process.exit()
+        }
+    })
 
     countryData = countryData.map((country) => {
         try {
@@ -41,9 +67,9 @@ async function main() {
                 ...country,
                 geo: {
                     "@id": "#" + country.name,
-                    "@type": "GeoShape",
+                    "@type": "Geometry",
                     name: `Geographical coverage for ${country.name}`,
-                    geojson: JSON.stringify(countryGeoJSONGroupedByName[country.isoA3][0]),
+                    asWKT: geoJSONasWKT[country.isoA3]
                 },
             };
         } catch (error) {
