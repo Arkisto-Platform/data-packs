@@ -17,6 +17,6 @@ const datapacks = {
 };
 
 module.exports = {
-    host: "https://raw.githubusercontent.com/describo/data-packs/master/data-packs",
+    host: "https://raw.githubusercontent.com/Language-Research-Technology/data-packs/master/data-packs",
     datapacks,
 };

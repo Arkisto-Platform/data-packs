@@ -34,7 +34,7 @@ class DataPack {
         this.indexFields = indexFields;
         this.indexes = {};
         this.cache = cache;
-        this.cachePath = path.join(cwd(), "node_modules", ".cache", "describo-data-packs");
+        this.cachePath = path.join(cwd(), "node_modules", ".cache", "ldac-data-packs");
     }
 
     /**
@@ -55,7 +55,7 @@ class DataPack {
         }
     }
 
-    /**
+    /**a
      * @private
      */
     async fetchDataPack({ pack }) {
