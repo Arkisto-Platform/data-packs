@@ -37,7 +37,8 @@ async function getLanguageData(languageData, dataJSON) {
             name: item.language_name,
             source: "Austlang",
             sameAs: [],
-            alternateName: []
+            alternateName: [],
+            "iso639-3":[],
         }
 
         if (item.approximate_longitude_of_language_variety !== 0 && item.approximate_latitude_of_language_variety !== 0) {

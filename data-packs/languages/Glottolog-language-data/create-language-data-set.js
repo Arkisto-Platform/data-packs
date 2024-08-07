@@ -45,15 +45,6 @@ const { writeJson, readJSON } = require("fs-extra");
                 alternateName = [];
             }
 
-            const geojson = {
-                type: "Feature",
-                properties: { name },
-                geometry: {
-                    type: "Point",
-                    coordinates: [longitude, latitude],
-                },
-            };
-
             const geoLocation = {
                 "@id": `_geo-glottolog-${languageCode}`,
                 "@type": "Geometry",
@@ -76,7 +67,7 @@ const { writeJson, readJSON } = require("fs-extra");
                     alternateName,
                 };
                 if (iso639) {
-                    language.sameAs = [{ "@id": `https://www.ethnologue.com/language/${iso639}` }];
+                    language.sameAs = [...language.sameAs, ...{ "@id": `https://www.ethnologue.com/language/${iso639}` }];
                     language["iso639-3"] = iso639;
                 }
 
@@ -85,7 +76,7 @@ const { writeJson, readJSON } = require("fs-extra");
         } catch (error) {
             console.log(error.message, components);
         }
-        
+
     }
 
     await writeJson(languagePack, languageData);
