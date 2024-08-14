@@ -11,24 +11,31 @@
  *
  * @example
  * {
-        "@id": "https://collection.aiatsis.gov.au/austlang/language/A121",
-        "@type": "Language",
-        "languageCode": "A121",
-        "name": "Ngardi",
-        "geo": {
-            "@id": "#Ngardi",
-            "@type": "GeoCoordinates",
-            "name": "Geographical coverage for Ngardi",
-            "geojson": "{\"type\":\"Feature\",\"name\":\"Ngardi\",\"geometry\":{\"type\":\"GeoCoordinates\",\"coordinates\":[\"\",\"\"]}}"
-        },
-        "source": "Austlang",
-        "sameAs": [
-            { "@id": "https://glottolog.org/resource/languoid/id/ngar1288" },
-            { "@id": "https://www.ethnologue.com/language/rxd" }
-        ],
-        "alternateName": "",
-        "glottologCode": "ngar1288",
-        "iso639-3": "rxd"
+        {
+    "@id": "https://collection.aiatsis.gov.au/austlang/language/A69",
+    "@type": "Language",
+    "languageCode": "A69",
+    "name": "Bunara",
+    "source": "Austlang",
+    "sameAs": [{
+            "@id": "https://glottolog.org/resource/languoid/id/ngar1288"
+        }, {
+            "@id": "https://www.ethnologue.com/language/rxd"
+        }, {
+            "@id": "https://glottolog.org/resource/languoid/id/kolo1265"
+        }, {
+            "@id": "https://glottolog.org/resource/languoid/id/mung1268"
+        }],
+    "alternateName": ["Ngardi", "Ngardilj", "Ngarti", "Waringari", "Boonarra", "Buna:ra", "Ngadi", "Ngari", "Ngati", "Panara", "Boonara", "Waiangara", "Kolo", "Waiangari", "Wain gara", "Waiangadi", "Warangari", "Kukuruba", "Woneiga", "Wanayaga", "Puruwantung", "Buruwatung", "Manggai", "Munga", "Walmala", "Wommana"],
+    "geo": {
+        "@id": "_geo-Austlang-A69",
+        "@type": "Geometry",
+        "name": "Geographical coverage for Bunara",
+        "asWKT": "POINT(129.04645622792 -20.709303855673)"
+    },
+    "glottologCode": "mung1268",
+    "iso639-3": "rxd"
+}
     },
  */
 
@@ -43,24 +50,26 @@
  *
  * Note (in this example) the properties `iso639-3` and `austlangCode`. You can use these properties as lookup fields to find entries in this pack using codes from Ethnologue (iso639-3) and Austlang.
  * @example
- * {
-        "@id": "https://glottolog.org/resource/languoid/id/ngar1288",
-        "@type": "Language",
-        "languageCode": "ngar1288",
-        "name": "Ngardi",
-        "geo": {
-            "@id": "#Ngardi",
-            "@type": "GeoCoordinates",
-            "name": "Geographical coverage for Ngardi",
-            "geojson": "{\"type\":\"Feature\",\"name\":\"Ngardi\",\"geometry\":{\"type\":\"GeoCoordinates\",\"coordinates\":[\"-21.0231\",\"129.0308\"]}}"
-        },
-        "source": "Glottolog",
-        "sameAs": [
-            { "@id": "https://www.ethnologue.com/language/rxd" },
-            { "@id": "https://collection.aiatsis.gov.au/austlang/language/A121" }
-        ],
-        "alternateName": "",
-        "iso639-3": "rxd",
-        "austlangCode": "A121"
+ * 
+{
+    "@id": "https://glottolog.org/resource/languoid/id/ngar1288",
+    "@type": "Language",
+    "languageCode": "ngar1288",
+    "name": "Ngardi",
+    "geo": {
+        "@id": "_geo-glottolog-ngar1288",
+        "@type": "Geometry",
+        "name": "Geographical coverage for Ngardi",
+        "asWKT": "POINT(129.0308 -21.0231)"
     },
+    "source": "Glottolog",
+    "sameAs": [{
+            "@id": "https://www.ethnologue.com/language/rxd"
+        }, {
+            "@id": "https://collection.aiatsis.gov.au/austlang/language/A121"
+        }],
+    "alternateName": [],
+    "iso639-3": "rxd",
+    "austlangCode": "A121"
+},
  */

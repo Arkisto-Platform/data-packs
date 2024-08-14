@@ -1,9 +1,9 @@
-const {datapacks, host} = require("./index.js");
-const {fetch} = require("cross-fetch");
+const { datapacks, host } = require("./index.js");
+const { fetch } = require("cross-fetch");
 const path = require("path");
-const {isString, chunk, flattenDeep} = require("lodash");
-const {Client} = require("@elastic/elasticsearch");
-const {Transport} = require('@elastic/transport')
+const { isString, chunk, flattenDeep } = require("lodash");
+const { Client } = require("@elastic/elasticsearch");
+const { Transport } = require('@elastic/transport')
 
 // then create a class, that extends Transport class to modify the path
 
@@ -21,7 +21,7 @@ class IndexDataPacks {
      * @param {string} [params.chunkSize=500] - the number of documents to bulk load per chunk
      * @param {Boolean} [params.log] - log which data pack is being loaded
      */
-    constructor({elasticUrl, elasticPath, elasticAuth, indexName, chunkSize = 500, log = false}) {
+    constructor({ elasticUrl, elasticPath, elasticAuth, indexName, chunkSize = 500, log = false }) {
         this.chunkSize = chunkSize;
         this.elasticUrl = elasticUrl;
         this.elasticAuth = elasticAuth;
@@ -30,7 +30,7 @@ class IndexDataPacks {
         // Extending Transport class see: https://github.com/elastic/elasticsearch-js/issues/1709
         this.MTransport = class extends Transport {
             request(params, options, callback) {
-                if(elasticPath) {
+                if (elasticPath) {
                     params.path = elasticPath + params.path // <- append the path if non-root
                 }
                 return super.request(params, options, callback)
@@ -54,16 +54,15 @@ class IndexDataPacks {
             }
             if (isString(datapacks[pack]) && datapacks[pack].match(/.*\.json$/)) {
                 pack = path.join(host, datapacks[pack]);
-                let data = await this.fetchDataPack({pack});
+                let data = await this.fetchDataPack({ pack });
                 let chunks = chunk(data, this.chunkSize);
                 for (let chunk of chunks) {
                     chunk = chunk.map((c) => {
-                        return [{index: {_id: c["@id"], _index: this.indexName}}, c];
+                        return [{ index: { _id: c["@id"], _index: this.indexName } }, c];
                     });
                     chunk = flattenDeep(chunk);
-
                     try {
-                        await client.bulk({body: chunk});
+                        await client.bulk({ body: chunk });
                     } catch (error) {
                         console.log(error.message);
                     }
@@ -75,7 +74,7 @@ class IndexDataPacks {
     /**
      * @private
      */
-    async fetchDataPack({pack}) {
+    async fetchDataPack({ pack }) {
         let response = await fetch(pack);
         if (response.status === 200) {
             let data = await response.json();
